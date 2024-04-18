@@ -3,32 +3,38 @@ package com.example.atividade3.services;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
-import com.example.atividade3.dtos.CategoriaCursoDTO;
-import com.example.atividade3.dtos.CursoDTO;
-import com.example.atividade3.dtos.DadosCursoDTO;
+import com.example.atividade3.dtos.ProjetoDTO;
+import com.example.atividade3.dtos.FuncionarioDTO;
+import com.example.atividade3.dtos.SetorDTO;
 import com.example.atividade3.exceptions.RegraNegocioException;
-import com.example.atividade3.models.CategoriaCurso;
-import com.example.atividade3.models.Curso;
-import com.example.atividade3.repositories.CategoriaCursoRepository;
-import com.example.atividade3.repositories.CursoRepository;
+import com.example.atividade3.models.CategoriaFuncionario;
+import com.example.atividade3.models.CategoriaSetor;
+import com.example.atividade3.models.CategoriaProjeto;
+import com.example.atividade3.models.Projeto;
+import com.example.atividade3.models.Setor;
+import com.example.atividade3.models.Funcionario;
+import com.example.atividade3.repositories.ProjetoRepository;
+import com.example.atividade3.repositories.SetorRepository;
+import com.example.atividade3.repositories.FuncionarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
-public class CursoServiceImpl implements CursoService {
-private final CursoRepository cursoRepository;
-private final CategoriaCursoRepository categoriaCursoRepository;
+public class ProjetoServiceImpl implements ProjetoService {
+private final ProjetoRepository ProjetoRepository;
+private final SetorRepository SetorRepository;
+private final FuncionarioRepository FuncionarioRepository;
 @Override
 @Transactional
-public Curso salvar(CursoDTO cursoDTO) {
-CategoriaCurso categ = categoriaCursoRepository
-.findById(cursoDTO.getCategoriaCursoId())
+public Projeto salvar(ProjetoDTO ProjetoDTO) {
+CategoriaProjeto categ = ProjetoRepository
+.findById(ProjetoDTO.getProjetoId())
 .orElseThrow(() -> new RegraNegocioException("Categoria não encontrada"));
-Curso curso = new Curso();
-curso.setNome(cursoDTO.getNome());
-curso.setCargaHoraria(cursoDTO.getCargaHoraria());
-curso.setCategoriaCurso(categ);
-return cursoRepository.save(curso);
+Projeto projeto = new Projeto();
+Projeto.setNome(ProjetoDTO.getNome());
+Projeto.SetDataInicio(ProjetoDTO.getDataInicio());
+Projeto.SetDataFim(ProjetoDTO.getDataFim());
+return ProjetoRepository.save(Projeto);
 }
 @Override
 public DadosCursoDTO obterCursoPorId(Long id) {
@@ -75,5 +81,20 @@ return DadosCursoDTO.builder()
 .build())
 .build();
 }).collect(Collectors.toList());
+}
+@Override
+public Projeto salvar(ProjetoDTO projetoDTO) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'salvar'");
+}
+@Override
+public ProjetoDTO obterProjetoPorId(Long id) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'obterProjetoPorId'");
+}
+@Override
+public void editar(Long id, ProjetoDTO ProjetoDTO) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'editar'");
 }
 }

@@ -12,25 +12,29 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.atividade3.dtos.CursoDTO;
 import com.example.atividade3.dtos.DadosCursoDTO;
+import com.example.atividade3.dtos.ProjetoDTO;
 import com.example.atividade3.models.Curso;
+import com.example.atividade3.models.Projeto;
 import com.example.atividade3.services.CursoService;
+import com.example.atividade3.services.ProjetoService;
+
 import java.util.List;
 @RestController
 @RequestMapping("/api/curso")
-public class CursoController {
+public class ProjetoController {
 private CursoService cursoService;
-public CursoController(CursoService cursoService) {
+public ProjetoController(CursoService cursoService) {
     this.cursoService = cursoService;
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Curso salvar(@RequestBody CursoDTO cursoDTO) {
-    Curso c = cursoService.salvar(cursoDTO);
-    return c;
+    public Projeto salvar(@RequestBody ProjetoDTO ProjetoDTO) {
+    Projeto p = ProjetoService.salvar(ProjetoDTO);
+    return p;
     }
     @GetMapping("{id}")
-    public DadosCursoDTO getCursoPorId(@PathVariable Long id) {
-    return cursoService.obterCursoPorId(id);
+    public Projeto getProjetoPorId(@PathVariable Long id) {
+    return ProjetoService.obterProjetoPorId(id);
     }
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

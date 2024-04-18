@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CursoDTO {
-    private Long id;
+public class FuncionarioDTO {
+    private int id;
     private String nome;
-    private Integer cargaHoraria;
-    private Long categoriaCursoId;
 }

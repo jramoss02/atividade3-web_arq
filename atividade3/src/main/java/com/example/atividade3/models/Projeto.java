@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
-@Data
+static @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Projeto {
@@ -29,5 +29,17 @@ private Date dataFim;
 @ManyToOne
 @JoinColumn(name = "projeto_id")
 private CategoriaProjeto categoriaProjeto;
+public static void setNome(Object nome) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setNome'");
+}
+public static void SetDataInicio(Date dataInicio2) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'SetDataInicio'");
+}
+public static void SetDataFim(Date dataFim2) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'SetDataFim'");
+}
 }
 
