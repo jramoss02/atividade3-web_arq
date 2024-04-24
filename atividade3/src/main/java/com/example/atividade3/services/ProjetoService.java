@@ -58,5 +58,10 @@ public class ProjetoService {
         projeto.getFuncionarios().add(funcionario);
         projetoRepository.save(projeto);
     }
+
+    public void vincularFuncionario(Integer idProjeto, Integer idFuncionario) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'vincularFuncionario'");
+    }
 }
 
