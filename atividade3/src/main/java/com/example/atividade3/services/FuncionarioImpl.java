@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.atividade3.dtos.DadosFuncionarioDTO;
+import com.example.atividade3.dtos.DadosProjetoDTO;
+import com.example.atividade3.dtos.DadosSetorDTO;
 import com.example.atividade3.dtos.FuncionarioDTO;
 import com.example.atividade3.models.Funcionario;
 import com.example.atividade3.models.Setor;
@@ -87,11 +89,15 @@ public class FuncionarioImpl implements FuncionarioService {
     }
 
     private DadosFuncionarioDTO toDadosFuncionarioDTO(Funcionario funcionario) {
+        List<DadosProjetoDTO> projetosDTO = funcionario.getProjetos().stream()
+                .map(projeto -> new DadosProjetoDTO(projeto))
+                .collect(Collectors.toList());
+    
         return DadosFuncionarioDTO.builder()
                 .id(funcionario.getId())
                 .nome(funcionario.getNome())
-                .setor(funcionario.getSetor())
-                .projetos(funcionario.getProjetos())
+                .setor(new DadosSetorDTO(funcionario.getSetor()))
+                .projetos(projetosDTO)
                 .build();
     }
 }

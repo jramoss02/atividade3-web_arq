@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.atividade3.models.Funcionario;
-import com.example.atividade3.models.Projeto;
-import com.example.atividade3.models.Setor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

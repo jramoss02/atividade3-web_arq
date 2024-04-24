@@ -15,4 +15,6 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
     Projeto findProjetoFetchFuncionarios(@Param("id") Long id);
     
     List<Projeto> findByDataFimBetween(LocalDate dataFim);
+
+    List<Projeto> buscarProjetosPorDataInicioFim(LocalDate dataInicio, LocalDate dataFim);
 }

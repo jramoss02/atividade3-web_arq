@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.atividade3.dtos.DadosFuncionarioDTO;
 import com.example.atividade3.dtos.DadosProjetoDTO;
-import com.example.atividade3.dtos.FuncionarioDTO;
-import com.example.atividade3.models.Funcionario;
 import com.example.atividade3.models.Projeto;
-import com.example.atividade3.models.Setor;
 import com.example.atividade3.services.ProjetoService;
 
 @RestController
@@ -30,7 +25,7 @@ public class ProjetoController {
     }
 
     @GetMapping("/{id}")
-    public DadosProjetoDTO buscarProjetoPorId(@PathVariable Integer id) {
+    public DadosProjetoDTO buscarProjetoPorId(@PathVariable Long id) {
         Projeto projeto = projetoService.buscarProjetoPorId(id);
         return new DadosProjetoDTO(projeto);
     }

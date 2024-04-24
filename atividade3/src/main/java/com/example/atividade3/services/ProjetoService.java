@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.atividade3.models.Funcionario;
 import com.example.atividade3.models.Projeto;
-<<<<<<< Updated upstream
 import com.example.atividade3.repositories.FuncionarioRepository;
 import com.example.atividade3.repositories.ProjetoRepository;
 
@@ -23,14 +22,14 @@ public class ProjetoService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public void criarProjeto(ProjetoDTO projetoDTO) {
+    public void criarProjeto(Projeto projetoDTO) {
         Projeto projeto = new Projeto();
         projeto.setDescricao(projetoDTO.getDescricao());
         projeto.setDataInicio(projetoDTO.getDataInicio());
         projeto.setDataFim(projetoDTO.getDataFim());
 
         Set<Funcionario> funcionarios = new HashSet<>();
-        projetoDTO.getIdsFuncionarios().forEach(idFuncionario -> {
+        projetoDTO.getFuncionarios().forEach(idFuncionario -> {
             Funcionario funcionario = funcionarioRepository.findById(idFuncionario).orElseThrow();
             funcionarios.add(funcionario);
         });
@@ -39,7 +38,7 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-    public Projeto buscarProjetoPorId(Integer id) {
+    public Projeto buscarProjetoPorId(Long id) {
         return projetoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Projeto não encontrado com o id fornecido"));
     }
@@ -57,12 +56,3 @@ public class ProjetoService {
     }
 }
 
-=======
-public interface ProjetoService {
-    Projeto salvar(ProjetoDTO projetoDTO);
-    ProjetoDTO obterProjetoPorId(Long id);
-    void remover(Long id);
-    void editar(Long id, ProjetoDTO ProjetoDTO);
-    List<ProjetoDTO> obterTodos();
-}
->>>>>>> Stashed changes
