@@ -3,6 +3,7 @@ package com.example.atividade3.services;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +48,13 @@ public class ProjetoService {
         return projetoRepository.buscarProjetosPorDataInicioFim(dataInicio, dataFim);
     }
 
-    public void vincularFuncionario(Integer idProjeto, Integer idFuncionario) {
+    public void vincularFuncionario(Long idProjeto, Long idFuncionario) {
         Projeto projeto = buscarProjetoPorId(idProjeto);
-        Funcionario funcionario = funcionarioRepository.findById(idFuncionario).orElseThrow();
+        Funcionario funcionario = new Funcionario();
 
+        funcionario.setId(idFuncionario);
+        funcionario = funcionarioRepository.findById(funcionario).orElseThrow(() -> new NoSuchElementException("Funcionário não encontrado com o ID: " + idFuncionario));
+    
         projeto.getFuncionarios().add(funcionario);
         projetoRepository.save(projeto);
     }
