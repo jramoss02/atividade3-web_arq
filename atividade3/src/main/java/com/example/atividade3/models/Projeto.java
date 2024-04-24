@@ -1,45 +1,48 @@
 package com.example.atividade3.models;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import jakarta.persistence.ManyToMany;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-@Entity
-static @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Projeto {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int id;
-@Column(length = 200, nullable = false)
-private String descricao;
-@Column(nullable = false)
-private Date dataInicio;
-@Column(nullable = false)
-private Date dataFim;
-@ManyToOne
-@JoinColumn(name = "projeto_id")
-private CategoriaProjeto categoriaProjeto;
-public static void setNome(Object nome) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setNome'");
-}
-public static void SetDataInicio(Date dataInicio2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'SetDataInicio'");
-}
-public static void SetDataFim(Date dataFim2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'SetDataFim'");
-}
-}
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Entity
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Projeto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(length = 255, nullable = false)
+    @NonNull
+    private String descricao;
+
+    @Column(nullable = false)
+    @NonNull
+    private LocalDate dataInicio;
+
+    @Column(nullable = false)
+    @NonNull
+    private LocalDate dataFim;
+
+    @ManyToMany(mappedBy = "projetos")
+    private Set<Funcionario> funcionarios;
+
+    @ManyToMany(mappedBy = "projetos")
+    private List<Funcionario> functionarios;
+}
