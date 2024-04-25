@@ -1,35 +1,36 @@
-package com.example.atividade3.models;
+package com.example.atividade3.models; // Declaração do pacote onde a classe está localizada
 
-import java.util.List;
+import java.util.List; // Importação da classe List para representar uma lista de elementos
 
-import jakarta.persistence.Column;
+import jakarta.persistence.Column; // Importação das anotações do JPA para mapeamento de entidades
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
+import lombok.Getter; // Importação das anotações Lombok para geração automática de getters, setters, toString, entre outros
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@NoArgsConstructor
-@RequiredArgsConstructor
-@Getter
-@Setter
-@ToString
-public class Setor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Entity // Anotação que indica que essa classe é uma entidade JPA
+@NoArgsConstructor // Anotação Lombok para gerar um construtor sem argumentos
+@RequiredArgsConstructor // Anotação Lombok para gerar um construtor com todos os argumentos obrigatórios
+@Getter // Anotação Lombok para gerar automaticamente um método getter para cada campo da classe
+@Setter // Anotação Lombok para gerar automaticamente um método setter para cada campo da classe
+@ToString // Anotação Lombok para gerar automaticamente um método toString para a classe
+public class Setor { // Declaração da classe Setor
+    
+    @Id // Anotação que indica que esse campo é a chave primária da entidade
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Anotação que especifica que o valor do campo será gerado automaticamente pelo banco de dados
+    private Long id; // Declaração do campo id do tipo Long
 
-    @Column(length = 255, nullable = false)
-    @NonNull
-    private String nome;
+    @Column(length = 255, nullable = false) // Anotação que especifica que esse campo é uma coluna no banco de dados com tamanho máximo de 255 caracteres e não pode ser nulo
+    @NonNull // Anotação Lombok para indicar que esse campo não pode ser nulo
+    private String nome; // Declaração do campo nome do tipo String
 
-    @OneToMany(mappedBy = "setor")
-    private List<Funcionario> funcionarios;
+    @OneToMany(mappedBy = "setor") // Anotação que especifica que essa é uma associação One-to-Many com a entidade Funcionario, indicando que o mapeamento é feito pelo atributo 'setor' na classe Funcionario
+    private List<Funcionario> funcionarios; // Declaração do campo funcionarios do tipo List<Funcionario>, representando os funcionários que pertencem a esse setor
 }

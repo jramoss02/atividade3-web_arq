@@ -19,4 +19,6 @@ public interface FuncionarioService {
     void delete(Long id);
 
     Funcionario update(Long id, FuncionarioDTO funcionario);
+
+    void adicionarFuncionario(FuncionarioDTO funcionarioDTO);
 }

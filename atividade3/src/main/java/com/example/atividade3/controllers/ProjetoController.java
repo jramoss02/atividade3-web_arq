@@ -35,4 +35,3 @@ public class ProjetoController {
         projetoService.vincularFuncionario(idProjeto, idFuncionario);
     }
 }
-

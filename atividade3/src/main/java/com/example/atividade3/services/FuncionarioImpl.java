@@ -100,4 +100,10 @@ public class FuncionarioImpl implements FuncionarioService {
                 .projetos(projetosDTO)
                 .build();
     }
+
+    @Override
+    public void adicionarFuncionario(FuncionarioDTO funcionarioDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'adicionarFuncionario'");
+    }
 }
